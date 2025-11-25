@@ -2,10 +2,11 @@
   padding: 0;
   margin: 0;
   font-family: "Segoe UI", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
 }
 
 body {
-  background: linear-gradient(to right, rgb(14, 14, 95), rgb(36, 32, 87));
+  background: #1f2937;
   align-items: center;
   justify-content: center;
 }
@@ -17,16 +18,47 @@ body {
 button {
   background-color: #818df800;
   outline: none;
-  border: none;
-}
-button {
+  font-weight: 700;
   border: 1px solid #ffffff28;
-  outline: none;
+  transition: background-color 0.5s;
+  padding: 10px 15px 10px 15px;
 }
 
 button:focus {
-  background-color: #818cf8;
+  transform: translateY(2px);
+  transition: transform 0.1s ease;
   outline: none;
+}
+
+#startBtn {
+  margin-top: 3rem;
+  font-size: 20px;
+  border: none;
+  border-radius: 10px;
+  background-color: #818cf8;
+  width: 200px;
+  height: 50px;
+  box-shadow: 0 4px 5px 0.5px #818cf8;
+}
+
+#startBtn:hover {
+  transform: translateY(-2px);
+  transition: transform 0.5s ease;
+}
+
+#startBtn:active {
+  transform: translateY(1.5px);
+  box-shadow: 0 1px 5px 0.5px #818cf8;
+  transition: all 0.1s ease;
+}
+
+.active {
+  background-color: #818cf8;
+}
+#returnBtn {
+  margin-top: 30px;
+  margin-right: 80%;
+  background-color: rgba(0, 0, 0, 0);
   border: none;
 }
 
@@ -35,21 +67,24 @@ button:focus {
   margin-top: 5rem;
   border-radius: 20px;
   height: 50em;
-  width: 50vw;
+  width: 46vw;
   font-family: "Segoe UI", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin-bottom: 5rem;
+  padding-bottom: 3rem;
 }
 
 #firstPage {
   display: flex;
   flex-direction: column;
-  
   justify-content: center;
   align-items: center;
 }
-#firstPage h2 {
-  margin-top: 2rem;
+
+#firstPage h1 {
+  margin-top: 4rem;
   margin-left: 20px;
   font-size: 50px;
+  font-weight: 900;
   font-family: "Segoe UI", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   color: #818cf8;
 }
@@ -62,12 +97,56 @@ button:focus {
   opacity: 70%;
 }
 
-#firstPage h3{
+#firstPage h3 {
+  padding: 5px;
+  box-shadow: 0.5px 0.5px 10px #0000000f;
   font-size: 24px;
   margin-top: 3rem;
-  margin-bottom:  2rem;
+  margin-bottom: 2rem;
 }
 
+#gameUi {
+  background-color: #2e3643;
+  margin-top: 5rem;
+  border-radius: 20px;
+  height: 20em;
+  width: 46vw;
+  font-family: "Segoe UI", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin-bottom: 5rem;
+  padding-bottom: 3rem;
+}
+
+#secondPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#secondPage h1 {
+  margin-top: 4rem;
+  margin-left: 20px;
+  font-size: 50px;
+  font-weight: 900;
+  font-family: "Segoe UI", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #818cf8;
+}
+
+#secondPage p {
+  margin-left: 15px;
+  margin-bottom: 1rem;
+  font-size: larger;
+  padding: 0.5rem 3rem 0.5rem 3rem;
+  opacity: 70%;
+}
+
+#secondPage h3 {
+  padding: 5px;
+  box-shadow: 0.5px 0.5px 10px #0000000f;
+  font-size: 24px;
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+}
 
 #gameOver {
   position: absolute;
