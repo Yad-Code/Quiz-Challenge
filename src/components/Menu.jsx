@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Button from "./Button.jsx";
+import TrueButton from "./TrueButton.jsx";
 import QUESTIONS from "../data.js";
 import GameOver from "./GameOver.jsx";
 import Countdown from "react-countdown";
@@ -12,9 +13,11 @@ export default function Menu() {
   const [wrongScore, setWrongScore] = useState(0);
   const [end, setEnd] = useState(0);
   const [startGame, setStartGame] = useState(true);
-  const [isActive, setIsActive] = useState(20);
-  const [timer, setTimer] = useState(6);
+  const [isActive, setIsActive] = useState(20); //-----Question number---------
+  const [timer, setTimer] = useState(6); //-----Choosen time-------
   const [randomInt, setRandomInt] = useState([]);
+  const [isTrue, setIsTrue] = useState(0);
+  const [isWrong, setIsWrong] = useState(0);
 
   function genRandomNumber() {
     let newNum;
@@ -45,18 +48,29 @@ export default function Menu() {
 
   //---------------handling-answers----------------
   function handleAnswerClick(choosenIndex) {
+    const correct = QUESTIONS[selectedCategory][currentIndex].correctIndex;
     if (category != "menu") {
-      if (
-        choosenIndex === QUESTIONS[selectedCategory][currentIndex].correctIndex
-      ) {
-        setScore((prevScore) => prevScore + 1);
-        setCurrentIndex(genRandomNumber());
+      setIsTrue(correct);
+      if (choosenIndex === correct) {
+        setTimeout(() => {
+          setScore((prevScore) => prevScore + 1);
+          setCurrentIndex(genRandomNumber());
+          setIsWrong("");
+          setIsTrue("");
+        }, 1500);
       } else {
-        setWrongScore((prev) => prev + 1);
-        setCurrentIndex(genRandomNumber());
+        setIsWrong(choosenIndex);
+        setTimeout(() => {
+          setWrongScore((prev) => prev + 1);
+          setCurrentIndex(genRandomNumber());
+          setIsWrong("");
+          setIsTrue("");
+        }, 1500);
       }
     }
   }
+
+  //-----------checkingTheTruth----
 
   //------------Active--------------
   function activeButton(num) {
@@ -84,7 +98,38 @@ export default function Menu() {
     setStartGame(true);
     setRandomInt([]);
   }
+//--------------------------------------
+  const categoryRef = useRef(category);
 
+  useEffect(() => {
+    categoryRef.current = category;
+  }, [category]);
+
+  useEffect(() => {
+    function onKeyDown(e) {
+      if (e.key !== "Enter") return;
+
+      const tag = (e.target && e.target.tagName) || "";
+      if (["INPUT", "TEXTAREA", "SELECT"].includes(tag)) return;
+
+      if (categoryRef.current === "menu") {
+        setCategory("cat");
+        setCurrentIndex(genRandomNumber());
+        setStartGame(false);
+      } else {
+        setCategory("menu");
+        setEnd(0);
+        setWrongScore(0);
+        setScore(0);
+        setStartGame(true);
+        setRandomInt([]);
+      }
+    }
+
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, []);
+//--------------------------------------------------------------------------
   const menu = (
     <div id="game">
       <div id="firstPage">
@@ -141,29 +186,40 @@ export default function Menu() {
         <h3>Time Limit</h3>
         <div className="myButtons">
           <Button
+            id="seconds"
             className={timer === 6}
             handleClick={() => handleTimerClick(6)}
-            title={5 + "s"}
+            title={5 + " Seconds"}
           />
           <Button
+            id="seconds"
             className={timer === 11}
             handleClick={() => handleTimerClick(11)}
-            title={10 + "s"}
+            title={10 + " Seconds"}
           />
           <Button
+            id="seconds"
             className={timer === 16}
             handleClick={() => handleTimerClick(16)}
-            title={15 + "s"}
+            title={15 + " Seconds"}
           />
           <Button
+            id="seconds"
             className={timer === 21}
             handleClick={() => handleTimerClick(21)}
-            title={20 + "s"}
+            title={20 + " Seconds"}
           />
         </div>
         {startGame && (
           <div className="startBtn">
-            <Button id="startBtn" title="Start Challenge" handleClick={gameStart} />
+            <Button
+              id="startBtn"
+              title="Start Challenge"
+              handleClick={gameStart}
+            />
+            <p id="small">
+              or press <span id="bold">Enter</span>
+            </p>
           </div>
         )}
       </div>
@@ -192,22 +248,38 @@ export default function Menu() {
         <p>{QUESTIONS[selectedCategory][currentIndex].q}</p>
 
         <div className="myButtons">
-          <Button
+          <TrueButton
             title={QUESTIONS[selectedCategory][currentIndex].choices[0]}
-            handleClick={() => handleAnswerClick("1")}
+            handleClick={() => {
+              handleAnswerClick("1");
+            }}
+            isTrue={isTrue === "1"}
+            isWrong={isWrong === "1"}
           />
 
-          <Button
+          <TrueButton
             title={QUESTIONS[selectedCategory][currentIndex].choices[1]}
-            handleClick={() => handleAnswerClick("2")}
+            handleClick={() => {
+              handleAnswerClick("2");
+            }}
+            isTrue={isTrue === "2"}
+            isWrong={isWrong === "2"}
           />
-          <Button
+          <TrueButton
             title={QUESTIONS[selectedCategory][currentIndex].choices[2]}
-            handleClick={() => handleAnswerClick("3")}
+            handleClick={() => {
+              handleAnswerClick("3");
+            }}
+            isTrue={isTrue === "3"}
+            isWrong={isWrong === "3"}
           />
-          <Button
+          <TrueButton
             title={QUESTIONS[selectedCategory][currentIndex].choices[3]}
-            handleClick={() => handleAnswerClick("4")}
+            handleClick={() => {
+              handleAnswerClick("4");
+            }}
+            isTrue={isTrue === "4"}
+            isWrong={isWrong === "4"}
           />
         </div>
       </div>
@@ -222,6 +294,7 @@ export default function Menu() {
 
   return (
     <>
+      <div class="stars"></div>
       {category === "menu" ? menu : cat}
       {end === 1 ? (
         <GameOver
