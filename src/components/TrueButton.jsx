@@ -1,13 +1,12 @@
-
 export default function TrueButton({ title, handleClick, isTrue, isWrong }) {
   return (
     <div>
       <button
-        className={
-          //className === true ? "true" : className === "false" ? "false" : ""
-          isTrue ? "true" : isWrong ? "false" : ""
-        }
-        onClick={handleClick}
+        className={isTrue ? "true" : isWrong ? "false" : ""}
+        onClick={(e) => {
+          e.target.blur();
+          handleClick();
+        }}
       >
         {title}
       </button>
