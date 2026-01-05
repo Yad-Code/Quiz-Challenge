@@ -5,6 +5,8 @@ import QUESTIONS from "../data.js";
 import GameOver from "./GameOver.jsx";
 import Countdown from "react-countdown";
 
+import leftArrow from "../Img/left-arrow.png";
+
 export default function Menu() {
   const [category, setCategory] = useState("menu");
   const [selectedCategory, setSelectedCategory] = useState("Geography");
@@ -167,7 +169,7 @@ export default function Menu() {
     document.addEventListener("keydown", onKeyDown);
     return () => document.removeEventListener("keydown", onKeyDown);
   }, []);
-  //--------------------------------------------------------------------------
+  //-------------------------------- MENU -------------------------------
   const menu = (
     <div id="game">
       <div id="firstPage">
@@ -268,6 +270,7 @@ export default function Menu() {
     <div id="gameUi">
       <div id="secondPage">
         <button id="returnBtn" onClick={gameRestart}>
+          <img src={leftArrow} id="svg" alt="" />
           Back
         </button>
         <div id="myflex">
@@ -295,7 +298,10 @@ export default function Menu() {
             </h3>
           )}
         </div>
-        <img src={QUESTIONS[selectedCategory][currentIndex].img} />
+        <img
+          id="questionimg"
+          src={QUESTIONS[selectedCategory][currentIndex].img}
+        />
         <div id="popup">
           {show === "correct" ? (
             <div id="comment">
