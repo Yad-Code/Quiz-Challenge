@@ -314,3 +314,80 @@ button:focus {
   width: 70%;
   height: 70%;
 } */
+
+/* ------------------ Responsive for smaller screens ------------------ */
+@media (max-width: 768px) {
+  #game,
+  #gameUi {
+    width: 90vw;
+    height: auto;
+    padding-bottom: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  #firstPage h1 {
+    font-size: 36px;
+    margin-top: 2rem;
+    margin-left: 0;
+  }
+
+  #firstPage p,
+  #secondPage p {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+  }
+
+  #startBtn {
+    width: 150px;
+    height: 45px;
+    font-size: 18px;
+  }
+
+  #myflex {
+    flex-direction: column;
+    margin-right: 0;
+    padding-top: 10px;
+    padding-bottom: 20px;
+  }
+
+  #questionimg {
+    width: 90%;
+    height: auto;
+    margin: 10px auto;
+  }
+
+  #secondPage h2 {
+    font-size: 18px;
+  }
+
+  #secondPage h3 {
+    bottom: auto;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    width: auto;
+  }
+
+  #returnBtn {
+    margin-right: 0;
+    width: 30px;
+    height: 30px;
+  }
+
+  #comment,
+  #bad {
+    width: 90%;
+    font-size: 16px;
+  }
+
+  #popup {
+    width: 80%;
+    height: auto;
+  }
+
+  .stars {
+    box-shadow: 2vw 5vh 1px white, 10vw 8vh 1px white, 15vw 15vh 0.5px white,
+      22vw 22vh 0.5px white, 28vw 12vh 1px white, 32vw 32vh 0.5px white;
+  }
+}
