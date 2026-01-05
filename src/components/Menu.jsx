@@ -5,7 +5,7 @@ import QUESTIONS from "../data.js";
 import GameOver from "./GameOver.jsx";
 import Countdown from "react-countdown";
 
-import leftArrow from "../Img/left-arrow.png";
+import leftArrow from "./left-arrow.png";
 
 export default function Menu() {
   const [category, setCategory] = useState("menu");
