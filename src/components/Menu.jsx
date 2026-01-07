@@ -126,7 +126,7 @@ export default function Menu() {
 
   return (
     <div className="relative min-h-screen flex flex-col items-center justify-center bg-linear-to-b from-[#0b0b2b] via-[#1b2735] to-[#090a0f] text-white px-4">
-      <div className="absolute w-1 h-1 bg-white animate-twinkle"></div>
+       
 
       {category === "menu" && (
         <div className="bg-[#2e3643] rounded-3xl shadow-xl max-w-3xl w-full p-8 flex flex-col items-center space-y-8">
