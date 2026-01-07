@@ -18,7 +18,7 @@ export default function GameOver({ handleClick, score, wrong }) {
       >
         <div className="bg-[#2e3643] p-8 rounded-3xl shadow-xl text-center w-11/12 max-w-md">
           <h2 className="text-4xl font-bold mb-4 text-[#818cf8]">Your Score</h2>
-          
+
           <p className="text-lg mb-6">
             Correct:{" "}
             <CountUp
@@ -40,7 +40,11 @@ export default function GameOver({ handleClick, score, wrong }) {
             />
           </p>
 
-          <h3 className={`text-2xl font-bold mb-6 ${score >= wrong ? "text-green-400" : "text-red-400"}`}>
+          <h3
+            className={`text-2xl font-bold mb-6 ${
+              score >= wrong ? "text-green-400" : "text-red-400"
+            }`}
+          >
             {score >= wrong ? "Congrats 🎉" : "You Lose 😢"}
           </h3>
 
