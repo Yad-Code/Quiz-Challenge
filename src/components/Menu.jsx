@@ -175,7 +175,7 @@ export default function Menu() {
           </div>
 
           {startGame && (
-            <div className="flex flex-col items-center mt-8 space-y-2">
+            <div className="flex flex-col items-center mt-8 space-y-2 z-2">
               <Button
                 title="Start Challenge"
                 handleClick={gameStart}
